@@ -4,6 +4,8 @@ export class Veiculo {
     public imagem: string;
     public marca: string;
     public modelo: string;
-    public static combustivel = ['Gasolina', 'Álcool', 'Flex'];
+    public combustivel: string;
     public valor: number;
 }
+
+//public combustivel = ['Gasolina', 'Álcool', 'Flex'];

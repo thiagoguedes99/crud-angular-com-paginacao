@@ -11,7 +11,7 @@ export class VeiculosService {
 	}
 
   listarTodos(): Veiculo[] {
-		var veiculos:string = sessionStorage['veiculos'];
+		let veiculos:string = sessionStorage['veiculos'];
 		return veiculos ? JSON.parse(veiculos) : [];
 	}
 
@@ -30,13 +30,13 @@ export class VeiculosService {
 
 
   cadastrar(veiculo: Veiculo): void {
-		var veiculos:Veiculo[] = this.listarTodos();
+		let veiculos:Veiculo[] = this.listarTodos();
 		veiculos.push(veiculo);
 		sessionStorage['veiculos'] = JSON.stringify(veiculos);
 	}
 
   buscarPorId(id: number):Veiculo {
-		var veiculos:Veiculo[] = this.listarTodos();
+		let veiculos:Veiculo[] = this.listarTodos();
 		for (let veiculo of veiculos) {
 			if (veiculo.id == id) {
 				return veiculo;
@@ -45,8 +45,23 @@ export class VeiculosService {
 		return new Veiculo();
 	}
 
+	buscarPorCombustivelOuMarca(search: string): Veiculo[] {
+		let veiculos:Veiculo[] = this.listarTodos();
+		let veiculosParcial: Veiculo[] = [];
+		for (let veiculo of veiculos) {
+			if (veiculo.combustivel.includes(search) || veiculo.marca.includes(search)) {
+				veiculosParcial.push(veiculo);
+			}
+		}
+		return veiculosParcial;
+	}
+
+	totalRegistrosPorCombustivelOuMarca(search: string): number {
+		return this.buscarPorCombustivelOuMarca(search).length;
+	}
+
   atualizar(id: number, veiculo: Veiculo): void {
-		var veiculos:Veiculo[] = this.listarTodos();
+		let veiculos:Veiculo[] = this.listarTodos();
 		for (var i=0; i<veiculos.length; i++) {
 			if (veiculos[i].id == id) {
 				veiculos[i] = veiculo;
@@ -56,8 +71,8 @@ export class VeiculosService {
 	}
 
   excluir(id: number): void {
-		var veiculos:Veiculo[] = this.listarTodos();
-		var veiculosFinal:Veiculo[] = [];
+		let veiculos:Veiculo[] = this.listarTodos();
+		let veiculosFinal:Veiculo[] = [];
 		for (let veiculo of veiculos) {
 			if (veiculo.id != id) {
 				veiculosFinal.push(veiculo);

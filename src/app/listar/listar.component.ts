@@ -20,14 +20,26 @@ export class ListarComponent implements OnInit {
 
   ngOnInit() {
 		this.totalRegistros = this.veiculoService.totalRegistros();
-		this.pagina = 1;    
-		this.veiculos = this.veiculoService.listarParcial(
-			--this.pagina, this.qtdPorPagina);
+		this.pagina = 1;
+		this.veiculos = this.veiculoService.listarParcial(--this.pagina, this.qtdPorPagina);
 	}
 
    paginar($event: any) {
 		this.pagina = $event - 1;
 		this.veiculos = this.veiculoService.listarParcial(this.pagina, this.qtdPorPagina);
+	}
+	 
+	 novo() {
+      this.rota.navigate(['/novo']);
+    }
+
+	buscarCombusMarca(busca: string) {
+		if (busca.length < 1) {
+			this.ngOnInit();	
+		} else {
+			this.totalRegistros = this.veiculoService.totalRegistrosPorCombustivelOuMarca(busca);
+			this.veiculos = this.veiculoService.buscarPorCombustivelOuMarca(busca);			
+		}
 	}
 
   excluir(id: number) {
@@ -38,8 +50,4 @@ export class ListarComponent implements OnInit {
  		this.veiculoService.excluir(this.idExcluir);
  		location.reload();
  	}
-	 
-	 novo() {
-      this.rota.navigate(['/novo']);
-    }
 }

@@ -24,12 +24,12 @@ export class CadastrarComponent implements OnInit {
       placa: ['', Validators.required],
       modelo: ['', Validators.required],
       marca:['', Validators.required],
-      foto: [''],
+      imagem: [''],
       combustivel: ['', Validators.required],
       valor: ['', Validators.required]
     });
   }
-
+  
   gravar() {
     this.service.cadastrar(this.form.value);
     this.cadastrado = true;

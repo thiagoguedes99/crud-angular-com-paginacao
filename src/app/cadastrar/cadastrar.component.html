@@ -40,13 +40,13 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="foto">Foto</label>
-                    <input type="text" class="form-control" id="foto" formControlName="foto">
+                    <label for="foto">imagem</label>
+                    <input type="text" class="form-control" id="imagem" formControlName="imagem" value="será mudado ainda">
                 </div>
 
                 <div class="form-group" [class.has-danger]="form.get('combustivel').errors && form.get('combustivel').touched" [class.has-success]="!form.get('combustivel').errors && form.get('combustivel').touched">
                     <label for="combustivel">Combustível</label>
-                    <input type="text" class="form-control form-control-danger form-control-success" id="combustivel" formControlName="combustivel">
+                    <input type="text" value="será mudado ainda" class="form-control form-control-danger form-control-success" id="combustivel" formControlName="combustivel">
 
                     <div *ngIf="form.get('combustivel').errors && form.get('combustivel').touched">
                         <div *ngIf="form.get('combustivel').hasError('required')">

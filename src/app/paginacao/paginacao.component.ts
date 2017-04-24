@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output, OnChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -6,7 +6,7 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './paginacao.component.html',
   styleUrls: ['./paginacao.component.css']
 })
-export class PaginacaoComponent implements OnInit {
+export class PaginacaoComponent implements OnInit, OnChanges {
 
   public static readonly TOTAL_PAGS_PADRAO: number = 5;
 	public static readonly PAG_PADRAO: number = 1;
@@ -32,6 +32,11 @@ export class PaginacaoComponent implements OnInit {
 		this.totalRegistros = this.totalRegistros || PaginacaoComponent.REG_PADRAO;
 		this.qtdPaginas = Math.ceil(this.totalRegistros / this.qtdPorPagina);
 		this.gerarLinks();
+	 }
+
+	 ngOnChanges() {
+		 this.qtdPaginas = Math.ceil(this.totalRegistros / this.qtdPorPagina);
+		 this.gerarLinks();
 	 }
 
    gerarLinks() {
