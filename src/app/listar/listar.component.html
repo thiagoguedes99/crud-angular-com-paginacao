@@ -1,0 +1,48 @@
+<button class="btn btn-success" (click)="novo()">Novo Carro</button>
+<br>
+<br>
+<div>
+    <table class="table table-striped table-hover justify-content-center">
+        <tr class="">
+            <th>Placa</th>
+            <th>Modelo</th>
+            <th>Marca</th>
+            <th>Foto</th>
+            <th>Combustível</th>
+            <th>Valor</th>
+        </tr>
+
+        <tr *ngFor="let veiculo of veiculos">
+            <td>
+                {{ veiculo.placa }}
+            </td>
+            <td>
+                {{ veiculo.modelo }}
+            </td>
+            <td>
+                {{ veiculo.marca }}
+            </td>
+            <td>
+                <div *ngIf="veiculo.imagem; else semFoto">
+                    <a href="{{ veiculo.imagem }}">imagem</a>
+                </div>
+                <ng-template #semFoto>
+                    Sem foto
+                </ng-template>
+            </td>
+            <td>
+                {{ veiculo.combustivel }}
+            </td>
+            <td>
+                {{ veiculo.valor }}
+            </td>
+        </tr>
+
+    </table>
+
+    <app-paginacao class="text-center" *ngIf="veiculos.length>0" [totalRegistros]="totalRegistros" [qtdPorPagina]="qtdPorPagina" (onPaginate)="paginar($event)">
+    </app-paginacao>
+    <p *ngIf="veiculos.length==0" class="text-center">
+        <i>Nenhum registro encontrado.</i>
+    </p>
+</div>

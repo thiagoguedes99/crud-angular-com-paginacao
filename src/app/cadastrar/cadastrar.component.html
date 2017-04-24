@@ -1,0 +1,85 @@
+<button class="btn btn-success" (click)="voltarPagina()">Voltar</button>
+<br>
+<br>
+<div *ngIf="!cadastrado">
+    <div class="card">
+        <h3 class="card-header">Cadastar Novo Carro</h3>
+        <div class="card-block">
+            <form [formGroup]="form" novalidate>
+                <div class="form-group" [class.has-danger]="form.get('placa').errors && form.get('placa').touched" [class.has-success]="!form.get('placa').errors && form.get('placa').touched">
+                    <label for="placa">Placa</label>
+                    <input type="text" class="form-control form-control-danger form-control-success" id="placa" formControlName="placa">
+
+                    <div *ngIf="form.get('placa').errors && form.get('placa').touched">
+                        <div *ngIf="form.get('placa').hasError('required')">
+                            <div class="form-control-feedback">A placa é uma campo obrigatório!</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group" [class.has-danger]="form.get('modelo').errors && form.get('modelo').touched" [class.has-success]="!form.get('modelo').errors && form.get('modelo').touched">
+                    <label for="modelo">Modelo</label>
+                    <input type="text" class="form-control form-control-danger form-control-success" id="modelo" formControlName="modelo">
+
+                    <div *ngIf="form.get('modelo').errors && form.get('modelo').touched">
+                        <div *ngIf="form.get('modelo').hasError('required')">
+                            <div class="form-control-feedback">O modelo é uma campo obrigatório!</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group" [class.has-danger]="form.get('marca').errors && form.get('marca').touched" [class.has-success]="!form.get('marca').errors && form.get('marca').touched">
+                    <label for="marca">Marca</label>
+                    <input type="text" class="form-control form-control-danger form-control-success" id="marca" formControlName="marca">
+
+                    <div *ngIf="form.get('marca').errors && form.get('marca').touched">
+                        <div *ngIf="form.get('marca').hasError('required')">
+                            <div class="form-control-feedback">A marca é uma campo obrigatório!</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="foto">Foto</label>
+                    <input type="text" class="form-control" id="foto" formControlName="foto">
+                </div>
+
+                <div class="form-group" [class.has-danger]="form.get('combustivel').errors && form.get('combustivel').touched" [class.has-success]="!form.get('combustivel').errors && form.get('combustivel').touched">
+                    <label for="combustivel">Combustível</label>
+                    <input type="text" class="form-control form-control-danger form-control-success" id="combustivel" formControlName="combustivel">
+
+                    <div *ngIf="form.get('combustivel').errors && form.get('combustivel').touched">
+                        <div *ngIf="form.get('combustivel').hasError('required')">
+                            <div class="form-control-feedback">O combustivel é uma campo obrigatório!</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group" [class.has-danger]="form.get('valor').errors && form.get('valor').touched" [class.has-success]="!form.get('valor').errors && form.get('valor').touched">
+                    <label for="valor">Valor</label>
+                    <input type="text" class="form-control form-control-danger form-control-success" id="valor" formControlName="valor">
+
+                    <div *ngIf="form.get('valor').errors && form.get('valor').touched">
+                        <div *ngIf="form.get('valor').hasError('required')">
+                            <div class="form-control-feedback">O valor é uma campo obrigatório!</div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary" [disabled]="form.invalid" (click)="gravar()">Gravar novo Carro</button>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+<div *ngIf="cadastrado">
+    <div class="card">
+        <h3 class="card-header">Cadastro Efetuado</h3>
+        <div class="card-block">
+            <button class="btn btn-primary" (click)="voltar()">Voltar para o Formulário de Cadastro</button>
+        </div>
+    </div>
+</div>
+<br>
+<br>
